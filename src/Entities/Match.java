@@ -3,6 +3,7 @@ package Entities;
 import java.time.LocalDate;
 
 public class Match {
+    private int id;
     private LocalDate date;
     private FootballTeam teamA;
     private FootballTeam teamB;
@@ -75,6 +76,14 @@ public class Match {
 
     public void setPitch(String pitch) {
         this.pitch = pitch;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override

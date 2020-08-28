@@ -38,9 +38,6 @@ public class ManageShedule {
         for (Match a : matchMethod.matches){
             if (a.getTeamA().equals(name) || a.getTeamB().equals(name)){
                 System.out.println(a);
-                System.out.println("Nhập vào ngày tổ chức trận đấu: ");
-
-
             }
         }
 

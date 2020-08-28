@@ -30,8 +30,19 @@ public class MatchMethod extends Vleague implements DASU {
                     match.setGoalTeamB((int) (Math.random()*6));
                     match.setPitch("Mỹ Tho");
                     match.setDate(matchDay.get(count));
+                    vleague.matches.add(match);
                     count++;
                     if (count > matchDay.size()) count = 0;
+                }
+            }
+        }
+
+        for (int i = 0; i < vleague.matches.size()- 1 ; i++) {
+            for (int j = vleague.matches.size()-1; j > i  ; j--) {
+                if (vleague.matches.get(i).getDate().isAfter(vleague.matches.get(j).getDate())){
+                    LocalDate swap = vleague.matches.get(j).getDate();
+                    vleague.matches.get(j).setDate(vleague.matches.get(j - 1).getDate());
+                    vleague.matches.get(j - 1).setDate(swap);
                 }
             }
         }
