@@ -5,47 +5,72 @@ import Entities.Vleague;
 import Interface.DASU;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 
 public class MatchMethod extends Vleague implements DASU {
 
-    public void randomShedule(Vleague vleague){
+    public void randomShedule(){
         List<LocalDate> matchDay = new ArrayList<>();
         LocalDate start = LocalDate.of(2020,9,05);
         for (int i = 0; i < teams.size(); i++){
             matchDay.add(start);
             start = start.plusDays(3);
         }
-        for (int i = 0; i < vleague.teams.size(); i++){
+        for (int i = 0; i < teams.size(); i++){
             int count = i *2;
-            if (count > matchDay.size()) {
+            if (count >= matchDay.size()) {
                 count = count - matchDay.size();
-                for (int j = i + 1; j < vleague.teams.size() ; j++) {
-                    Match match = new Match();
-                    match.setTeamA(vleague.teams.get(i));
-                    match.setTeamB(vleague.teams.get(j));
-                    match.setGoalTeamA((int) (Math.random()*6));
-                    match.setGoalTeamB((int) (Math.random()*6));
-                    match.setPitch("Mỹ Tho");
-                    match.setDate(matchDay.get(count));
-                    vleague.matches.add(match);
-                    count++;
-                    if (count > matchDay.size()) count = 0;
-                }
             }
+            for (int j = i + 1; j < teams.size() ; j++) {
+                Match match = new Match();
+                match.setTeamA(teams.get(i));
+                match.setTeamB(teams.get(j));
+
+                String name = teams.get(i).getSign() + " vs " + teams.get(j).getSign();
+                match.setName(name);
+
+                match.setGoalTeamA((int) (Math.random()*6));
+                match.setGoalTeamB((int) (Math.random()*6));
+                match.setPitch("Mỹ Tho");
+                match.setDate(matchDay.get(count));
+                matches.add(match);
+                count++;
+                if (count > matchDay.size()) count = 0;
+            }
+
         }
 
-        for (int i = 0; i < vleague.matches.size()- 1 ; i++) {
-            for (int j = vleague.matches.size()-1; j > i  ; j--) {
-                if (vleague.matches.get(i).getDate().isAfter(vleague.matches.get(j).getDate())){
-                    LocalDate swap = vleague.matches.get(j).getDate();
-                    vleague.matches.get(j).setDate(vleague.matches.get(j - 1).getDate());
-                    vleague.matches.get(j - 1).setDate(swap);
+        Collections.sort(matches, new Comparator<Match>() {
+            @Override
+            public int compare(Match o1, Match o2) {
+                if (o1.getDate().isAfter(o2.getDate())){
+                    return 1;
+                }else {
+                    if (o1.getDate().isEqual(o2.getDate())){
+                        return 0;
+                    }else {
+                        return -1;
+                    }
                 }
             }
+        });
+
+        for (Match a : matches) {
+            a.setId(matches.indexOf(a)+1);
         }
+
+
+
+//        for (int i = 0; i <matches.size()- 1 ; i++) {
+//            for (int j = matches.size()-1; j > i  ; j--) {
+//                if (matches.get(i).getDate().isAfter(matches.get(j).getDate())){
+//                    Match swap = matches.get(j);
+//                    matches.get(j) = matches.get(j-1);
+//                    matches.get(j-1) = swap;
+//                }
+//            }
+//        }
 
 //        List<LocalDate> matchDay = new ArrayList<>();
 //        LocalDate start =  LocalDate.of(2020,9,05);
@@ -114,11 +139,10 @@ public class MatchMethod extends Vleague implements DASU {
     }
 
 
-
     @Override
     public void getAll() {
         for (Match m: matches){
-            System.out.println(m);
+            System.out.println(m.toString());
         }
     }
 
@@ -126,10 +150,9 @@ public class MatchMethod extends Vleague implements DASU {
     public void update(Object o) {
         Match m = (Match) o;
         for (Match mi: matches){
+
             if (mi.getName().equals(m.getName())){
                 mi.setDate(m.getDate());
-                mi.setGoalTeamA(m.getGoalTeamA());
-                mi.setGoalTeamB(m.getGoalTeamB());
             }
         }
     }

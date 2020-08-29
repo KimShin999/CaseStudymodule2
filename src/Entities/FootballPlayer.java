@@ -9,10 +9,15 @@ public class FootballPlayer extends FootballTeam {
     private int numberPlayer;
     private String position;
     private int goal;
-    private String team;
+    private String nameTeam;
     private int card;
 
     public FootballPlayer(){}
+
+    public FootballPlayer(String namePlayer ,String nameTeam){
+        this.nameTeam = nameTeam;
+        this.namePlayer = namePlayer;
+    }
 
     public FootballPlayer(String namePlayer, String dateOfBirth, double height, double weight, int numberPlayer, String position, String Team){
         conut++;
@@ -22,7 +27,7 @@ public class FootballPlayer extends FootballTeam {
         this.weight = weight;
         this.numberPlayer = numberPlayer;
         this.position = position;
-        this.team = Team;
+        this.nameTeam = Team;
     }
 
     public String getNamePlayer() {
@@ -81,12 +86,12 @@ public class FootballPlayer extends FootballTeam {
         this.goal = goal;
     }
 
-    public String getTeam() {
-        return team;
+    public String getNameTeam() {
+        return nameTeam;
     }
 
-    public void setTeam(String team) {
-        this.team = team;
+    public void setNameTeam(String nameTeam) {
+        this.nameTeam = nameTeam;
     }
 
     public int getCard() {
@@ -103,7 +108,7 @@ public class FootballPlayer extends FootballTeam {
                 "namePlayer='" + namePlayer + '\'' +
                 ", numberPlayer=" + numberPlayer +
                 ", position='" + position + '\'' +
-                ", team='" + team + '\'' +
+                ", team='" + nameTeam + '\'' +
                 '}';
     }
 }

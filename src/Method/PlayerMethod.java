@@ -5,6 +5,8 @@ import Entities.Vleague;
 import Interface.DASU;
 
 public class PlayerMethod extends Vleague implements DASU {
+    static int count = 1;
+
     @Override
     public void getAll() {
         for (FootballPlayer t: players){
@@ -42,6 +44,10 @@ public class PlayerMethod extends Vleague implements DASU {
     public void add(Object o) {
         FootballPlayer t = (FootballPlayer) o;
         players.add(t);
+        String a = ""+count;
+        t.setId(a);
+        count++;
+
     }
 
     @Override

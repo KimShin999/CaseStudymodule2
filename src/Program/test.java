@@ -1,31 +1,52 @@
 package Program;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class test {
     public static void main(String[] args) {
-        LocalDate date1 = LocalDate.of(2020,5, 9);
-        LocalDate date2 = LocalDate.of(2020,8,9);
-        LocalDate date3 = LocalDate.of(2020,7,9);
-        List<LocalDate> list = new ArrayList<>();
-        List<LocalDate> list2 = new ArrayList<>();
-        list.add(date1);
-        list.add(date2);
-        list.add(date3);
+        test1();
+//        test2();
+    }
 
-        for (int i = 0; i < list.size()- 1 ; i++) {
-            for (int j = list.size()-1; j > i  ; j--) {
-                if (list.get(i).isAfter(list.get(j))){
-                    LocalDate swap = list.get(j);
-                    list.set(j,list.get(j-1));
-                    list.set(j - 1,swap);
-                }
+    public static void test2(){
+        List list = new ArrayList();
+        list.add("ádsa");
+        list.add("jkdshjdsa");
+        System.out.println(list.size());
+    }
+
+
+    public static void test1(){
+        List<String> list = new ArrayList();
+        Scanner scanner = new Scanner(System.in);
+        do {
+            System.out.println("1.thêm từ vào chuỗi");
+            System.out.println("2. bạn chon từ mà bạn muốn in ra");
+            int choicee = Integer.parseInt(scanner.nextLine());
+            boolean a =true;
+            switch (choicee){
+                case 1:
+                    while(a){
+                        System.out.println("nhập vào");
+                        String s = scanner.nextLine();
+                        list.add(s);
+                        if (s.equals("0")){
+                            a = false;
+                        }
+                    }
+                    break;
+                case 2:
+                    int choice = Integer.parseInt(scanner.nextLine());
+                    for (int i = 0; i < list.size()-1 ; i++) {
+                        if (choice==i){
+                            System.out.println(list.get(i-1));
+                        }
+                    }
+                    break;
             }
-        }
-        System.out.println(list.toString());
-
-
+        }while (true);
     }
 }
+

@@ -4,7 +4,7 @@ import Entities.Vleague;
 import Interface.DASU;
 
 public class TeamMethod extends Vleague implements DASU {
-
+    static int count = 1;
     @Override
     public void getAll() {
         for (FootballTeam t: teams){
@@ -16,7 +16,7 @@ public class TeamMethod extends Vleague implements DASU {
     public void update(Object o) {
         FootballTeam t = (FootballTeam) o;
         for (FootballTeam a: teams){
-            if (t.getNameTeam().equals(a.getNameTeam())){
+            if (a.getId().equals(t.getId())){
                 a.setNameTeam(t.getNameTeam());
                 a.setSign(t.getSign());
                 a.setCoach(t.getCoach());
@@ -28,7 +28,7 @@ public class TeamMethod extends Vleague implements DASU {
     public void remove(String name) {
         FootballTeam t = new FootballTeam();
         for (FootballTeam a: teams){
-            if (a.getNameTeam().equals(t)){
+            if (a.getNameTeam().equals(name)){
                 t = a;
             }
         }
@@ -39,6 +39,9 @@ public class TeamMethod extends Vleague implements DASU {
     public void add(Object o) {
         FootballTeam t = (FootballTeam) o;
         teams.add(t);
+        String a = ""+count;
+        t.setId(a);
+        count++;
     }
 
     @Override

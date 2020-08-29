@@ -7,11 +7,11 @@ public class Vleague {
 
     private int years;
 
-    public List<FootballTeam> teams = new ArrayList<FootballTeam>();
+    public static List<FootballTeam> teams = new ArrayList<FootballTeam>();
 
-    public List<FootballPlayer> players = new ArrayList<FootballPlayer>();
+    public static List<FootballPlayer> players = new ArrayList<FootballPlayer>();
 
-    public List<Match> matches = new ArrayList<Match>();
+    public static List<Match> matches = new ArrayList<Match>();
 
     public Vleague(){}
 
@@ -26,7 +26,4 @@ public class Vleague {
     public void setYears(int years) {
         this.years = years;
     }
-
-
-
 }

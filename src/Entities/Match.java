@@ -2,7 +2,7 @@ package Entities;
 
 import java.time.LocalDate;
 
-public class Match {
+public class Match{
     private int id;
     private LocalDate date;
     private FootballTeam teamA;
@@ -13,13 +13,18 @@ public class Match {
     private String name;
 
 
-    public void Match(){
+    public Match(){
     }
 
-    public void Match(LocalDate date, FootballTeam teamA, FootballTeam teamB){
+    public Match(LocalDate date, FootballTeam teamA, FootballTeam teamB){
         this.date = date;
         this.teamA = teamA;
         this.teamB = teamB;
+        String name = teamA.getSign() + " vs " + teamB.getSign();
+    }
+
+    public Match(LocalDate date){
+
     }
 
     public LocalDate getDate() {
@@ -89,11 +94,12 @@ public class Match {
     @Override
     public String toString() {
         return "Match{" +
-                "date='" + date + '\'' +
-                ", teamA=" + teamA +
-                ", teamB=" + teamB +
+                "id=" + id +
+                ", date=" + date +
+                ", name=" + name +
+                ", goalTeamA=" + goalTeamA +
+                ", goalTeamB=" + goalTeamB +
                 ", pitch='" + pitch + '\'' +
                 '}';
     }
-
 }

@@ -5,23 +5,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FootballTeam extends Vleague {
-    static int count;
     private String nameTeam;
     private String sign;
     private String coach;
     private String playersAttend;
     private int point;
-    private int id;
+    private String id;
     private int numberRandom;
 
     public FootballTeam(){}
 
     public FootballTeam(String nameTeam, String sign, String coach){
-        count++;
-        this.id = count;
         this.nameTeam = nameTeam;
         this.sign = sign;
         this.coach = coach;
+    }
+    public FootballTeam(String nameTeam, String sign, String coach, String id){
+        this.nameTeam = nameTeam;
+        this.sign = sign;
+        this.coach = coach;
+        this.id = id;
     }
 
     public List<FootballPlayer> players = new ArrayList<>();
@@ -50,11 +53,11 @@ public class FootballTeam extends Vleague {
         this.coach = coach;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
