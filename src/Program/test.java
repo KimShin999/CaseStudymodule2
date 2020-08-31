@@ -1,12 +1,17 @@
 package Program;
 
+import Entities.Match;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class test {
-    public static void main(String[] args) {
-        test1();
+    public void main(String[] args) {
+        int i ;
+        String o = "đâsda";
+        o = "dâdaadas";
+//        test1();
 //        test2();
     }
 

@@ -13,6 +13,10 @@ public class MatchMethod extends Vleague implements DASU {
     public void randomShedule(){
         List<LocalDate> matchDay = new ArrayList<>();
         LocalDate start = LocalDate.of(2020,9,05);
+        if (matches.size() != 0){
+            System.out.println("Lịch đã được tạo. Vui lòng xem lịch.");
+            return;
+        }
         for (int i = 0; i < teams.size(); i++){
             matchDay.add(start);
             start = start.plusDays(3);
@@ -38,7 +42,6 @@ public class MatchMethod extends Vleague implements DASU {
                 count++;
                 if (count > matchDay.size()) count = 0;
             }
-
         }
 
         Collections.sort(matches, new Comparator<Match>() {
@@ -59,6 +62,7 @@ public class MatchMethod extends Vleague implements DASU {
         for (Match a : matches) {
             a.setId(matches.indexOf(a)+1);
         }
+        System.out.println("đã tạo lịch thi đấu thành công. vui lòng xem lịch thi đấu. ");
 
 
 
@@ -187,6 +191,27 @@ public class MatchMethod extends Vleague implements DASU {
             if (m.getName().equals(mi.getName())){
                 mi.setGoalTeamA(a);
                 mi.setGoalTeamB(b);
+            }
+        }
+    }
+
+    public void scoreTeam(){
+        for (Match match: Vleague.matches){
+            if (match.getGoalTeamA()==match.getGoalTeamB()){
+                match.getTeamA().setGoalDifference(match.getTeamA().getGoalDifference() + match.getGoalTeamA()-match.getGoalTeamB());
+                match.getTeamB().setGoalDifference(match.getTeamB().getGoalDifference() +match.getGoalTeamB()-match.getGoalTeamA());
+                match.getTeamA().setPoint(match.getTeamA().getPoint() + 1);
+                match.getTeamB().setPoint(match.getTeamB().getPoint() +1);
+            }
+            if (match.getGoalTeamA() > match.getGoalTeamB()){
+                match.getTeamA().setGoalDifference(match.getTeamA().getGoalDifference() + match.getGoalTeamA()-match.getGoalTeamB());
+                match.getTeamB().setGoalDifference(match.getTeamB().getGoalDifference() +match.getGoalTeamB()-match.getGoalTeamA());
+                match.getTeamA().setPoint(match.getTeamA().getPoint() + 2);
+            }
+            if (match.getGoalTeamA() < match.getGoalTeamB()){
+                match.getTeamA().setGoalDifference(match.getTeamA().getGoalDifference() + match.getGoalTeamA()-match.getGoalTeamB());
+                match.getTeamB().setGoalDifference(match.getTeamB().getGoalDifference() +match.getGoalTeamB()-match.getGoalTeamA());
+                match.getTeamB().setPoint(match.getTeamB().getPoint() + 2);
             }
         }
     }

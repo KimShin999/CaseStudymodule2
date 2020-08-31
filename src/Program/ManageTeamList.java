@@ -3,12 +3,14 @@ package Program;
 import Entities.FootballPlayer;
 import Entities.FootballTeam;
 import Entities.Vleague;
+import Method.PlayerMethod;
 import Method.TeamMethod;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class ManageTeamList {
-    public static void veiwMenu(TeamMethod teamMethod){
+    public static void veiwMenu(TeamMethod teamMethod, PlayerMethod playerMethod){
 
         Scanner input = new Scanner(System.in);
         do {
@@ -21,7 +23,7 @@ public class ManageTeamList {
             String choiceI = input.nextLine();
 
             if (choiceI.equals("1")){
-                listTeamFootball(teamMethod);
+                listTeamFootball(teamMethod, playerMethod);
             }
             if (choiceI.equals("2")){
                 updateTeam(teamMethod);
@@ -35,27 +37,112 @@ public class ManageTeamList {
             if (choiceI.equals("0")){
                 break;
             }
-
         }while (true);
     }
 
-    public static void listTeamFootball(TeamMethod teamMethod){
+    public static void listTeamFootball(TeamMethod teamMethod, PlayerMethod playerMethod){
+        boolean check =true;
+        while (check){
+            Scanner input = new Scanner(System.in);
+            teamMethod.getAll();
+            if (Vleague.teams.size()==0){
+                System.out.println("chưa có đội bóng nào!");
+            }
+            System.out.println("0.Back");
+            System.out.println("Nhập vào số để xem thông tin về đội bóng: ");
+            int choice = input.nextInt();
+            for (int i = 0; i < Vleague.teams.size() ; i++) {
+                if (choice == 0){
+                   check = false;
+                }else if (choice == i+1){
+                    System.out.println("1.Danh sách cầu thủ thi đấu");
+                    System.out.println("2.Thêm mới cầu thủ");
+                    System.out.println("3.Chấm dứt hợp đồng cầu thủ");
+                    System.out.println("4.Cập nhật thông tin cầu thủ");
+                    System.out.println("0.Back");
 
-        Scanner input = new Scanner(System.in);
-        teamMethod.getAll();
-        int choice = Integer.parseInt(input.nextLine());
-        for (int i = 0; i < Vleague.teams.size()-1 ; i++) {
-            if (choice==i){
-                System.out.println("Danh sách đội bóng" + Vleague.teams.get(i-1).getNameTeam());
-                for (FootballPlayer player : Vleague.players){
-                    if (player.getNameTeam().equals(Vleague.teams.get(i-1).getNameTeam())){
-                        System.out.println(player);
+                    boolean checkk = true;
+                    while (checkk){
+                        String choiceI = input.nextLine();
+                        if (choiceI.equals("1")) {
+                            System.out.println("Danh sách đội bóng " + Vleague.teams.get(choice - 1).getNameTeam() + ": ");
+                            if (Vleague.players.size()==0){
+                                System.out.println("đội bóng chưa có cầu thủ nào!");
+                            }else {
+                                for (FootballPlayer player : Vleague.players) {
+                                    if (player.getNameTeam().equals(Vleague.teams.get(choice - 1).getNameTeam())) {
+                                        System.out.println(player);
+                                    }
+                                }
+                            }
+                            checkk =false;
+                        }else if (choiceI.equals("2")){
+                            System.out.println("Điền thông tin cầu thủ");
+                            System.out.println("Tên cầu thủ: ");
+                            String name = input.nextLine();
+
+                            System.out.println("Ngày sinh (DD MM YYYY): ");
+                            int[] list = new int[3];
+                            for (int j = 0; j < list.length; j++){
+                                list[j] = input.nextInt();
+                            }
+                            LocalDate date = LocalDate.of(list[2], list[1], list[0]);
+
+                            input.nextLine();
+                            System.out.println("Số áo: ");
+                            String numberPlayer = input.nextLine();
+
+                            System.out.println("Vị trí thi đấu: ");
+                            String position = input.nextLine();
+
+                            String nameTeam = Vleague.teams.get(choice - 1).getNameTeam();
+
+                            FootballPlayer player = new FootballPlayer(name, date,numberPlayer, position, nameTeam);
+
+                            playerMethod.add(player);
+                            System.out.println("Thêm thành công!");
+                            checkk = false;
+
+                        }else if (choiceI.equals("3")){
+                            System.out.println("Nhập vào id cầu thủ: ");
+                            int id = input.nextInt();
+                            for (FootballPlayer player: Vleague.players) {
+                                if ( player.getId() == id && player.getNameTeam().equals(Vleague.teams.get(choice - 1).getNameTeam())) {
+                                    System.out.println(player);
+                                    boolean checkdelete = true;
+                                    while (checkdelete) {
+                                        System.out.println("bạn có muốn xóa cầu thủ này khỏi đội? (Y/N)");
+                                        String choicedelete = input.nextLine();
+                                        if (choicedelete.equals("Y")) {
+                                            player.setNameTeam("Tự do");
+                                            System.out.println("Chấm dứt hợp đồng!");
+                                            checkdelete = false;
+                                        } else if (choicedelete.equals("N")) {
+                                            checkdelete = false;
+                                        } else System.out.println("vui lòng nhập đúng.");
+                                    }
+                                    return;
+                                }
+                            }
+                            checkk = false;
+                        }else if (choiceI.equals("4")){
+                            System.out.println("nhập vào id cầu thủ: ");
+                            int id = input.nextInt();
+                            for (FootballPlayer player: Vleague.players) {
+                                if (player.getId() == id) {
+                                    System.out.println(player);
+                                }
+                            }
+                            check = false;
+                        }else if (choiceI.equals("0")){
+                            break;
+                        }
                     }
                 }
             }
         }
-        System.out.println("Chọn đội nếu bạn muốn xem danh sách cầu thủ");
     }
+
 
     public static void updateTeam(TeamMethod teamMethod){
         Scanner input = new Scanner(System.in);
@@ -75,6 +162,7 @@ public class ManageTeamList {
         FootballTeam teamA = new FootballTeam(name, sign, coach, id);
 
         teamMethod.update(teamA);
+        System.out.println("bạn đã Sửa thành công!");
     }
 
     public static void addTeam(TeamMethod teamMethod){
@@ -89,14 +177,15 @@ public class ManageTeamList {
         FootballTeam teamA = new FootballTeam(name, sign, coach);
 
         teamMethod.add(teamA);
+        System.out.println("bạn đã thêm thành công!");
     }
 
     public static void removeTeam(TeamMethod teamMethod){
         Scanner input = new Scanner(System.in);
         System.out.println("Nhập vào tên đội bị mất quyền thi đấu: ");
         String name = input.nextLine();
-
         teamMethod.remove(name);
+        System.out.println("bạn đã xóa thành công!");
     }
 
 }

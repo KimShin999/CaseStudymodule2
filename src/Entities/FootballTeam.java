@@ -1,15 +1,14 @@
 package Entities;
 
+import java.io.Serializable;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class FootballTeam extends Vleague {
+public class FootballTeam implements Serializable {
     private String nameTeam;
     private String sign;
     private String coach;
     private String playersAttend;
     private int point;
+    private int goalDifference;
     private String id;
     private int numberRandom;
 
@@ -26,8 +25,6 @@ public class FootballTeam extends Vleague {
         this.coach = coach;
         this.id = id;
     }
-
-    public List<FootballPlayer> players = new ArrayList<>();
 
     public String getNameTeam() {
         return nameTeam;
@@ -85,13 +82,19 @@ public class FootballTeam extends Vleague {
         this.numberRandom = numberRandom;
     }
 
+    public int getGoalDifference() {
+        return goalDifference;
+    }
+
+    public void setGoalDifference(int goalDifference) {
+        this.goalDifference = goalDifference;
+    }
+
     @Override
     public String toString() {
-        return  id +"."+
+        return  id+"."+
                 "Đội bóng: " + nameTeam +
                 ", Sign: " + sign +
-                ", HLV: " + coach  +
-                ", SL dự:" + playersAttend +
-                ", Điểm: " + point;
+                ", HLV: " + coach +"\n";
     }
 }

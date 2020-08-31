@@ -1,8 +1,8 @@
 package Entities;
-
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Match{
+public class Match implements Serializable {
     private int id;
     private LocalDate date;
     private FootballTeam teamA;
@@ -99,7 +99,7 @@ public class Match{
                 ", name=" + name +
                 ", goalTeamA=" + goalTeamA +
                 ", goalTeamB=" + goalTeamB +
-                ", pitch='" + pitch + '\'' +
+                ", pitch='" + pitch + '\'' + "\n"+
                 '}';
     }
 }

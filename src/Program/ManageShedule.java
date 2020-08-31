@@ -34,7 +34,7 @@ public class ManageShedule {
 
     public static void updateShedule(MatchMethod matchMethod){
         Scanner input = new Scanner(System.in);
-        System.out.println("Bạn muốn sủa trận đấu của đội bóng nào: ");
+        System.out.println("Nhập vào name trận đấu bạn muốn sửa: ");
         String nameTeams = input.nextLine();
         for (Match a : matchMethod.matches){
             if (a.getTeamA().getNameTeam().equals(nameTeams) || a.getTeamB().getNameTeam().equals(nameTeams)){
@@ -53,12 +53,7 @@ public class ManageShedule {
 
         Match match = new Match();
         match.setDate(date);
-        match.setName(name);
-
+//        match.setName(name);
         matchMethod.update(match);
-
     }
-
-
-
 }

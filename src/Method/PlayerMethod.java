@@ -44,10 +44,6 @@ public class PlayerMethod extends Vleague implements DASU {
     public void add(Object o) {
         FootballPlayer t = (FootballPlayer) o;
         players.add(t);
-        String a = ""+count;
-        t.setId(a);
-        count++;
-
     }
 
     @Override

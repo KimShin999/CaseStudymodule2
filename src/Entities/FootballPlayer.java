@@ -1,30 +1,50 @@
 package Entities;
-
-public class FootballPlayer extends FootballTeam {
+import java.io.Serializable;
+import java.time.LocalDate;
+public class FootballPlayer implements Serializable {
     static int conut;
+    private  int id;
     private String namePlayer;
-    private String dateOfBirth;
+    private LocalDate dateOfBirth;
     private double height;
     private double weight;
-    private int numberPlayer;
+    private String numberPlayer;
     private String position;
     private int goal;
     private String nameTeam;
     private int card;
 
-    public FootballPlayer(){}
+    public FootballPlayer(){
+        this.nameTeam = "tự do";
+    }
+
+    public FootballPlayer(String nameTeam){
+        this.nameTeam = nameTeam;
+    }
 
     public FootballPlayer(String namePlayer ,String nameTeam){
         this.nameTeam = nameTeam;
         this.namePlayer = namePlayer;
+        this.nameTeam = "tự do";
     }
 
-    public FootballPlayer(String namePlayer, String dateOfBirth, double height, double weight, int numberPlayer, String position, String Team){
+    public FootballPlayer(String namePlayer, LocalDate dateOfBirth, double height, double weight, String numberPlayer, String position, String Team){
         conut++;
+        this.id = conut;
         this.namePlayer = namePlayer;
         this.dateOfBirth = dateOfBirth;
         this.height = height;
         this.weight = weight;
+        this.numberPlayer = numberPlayer;
+        this.position = position;
+        this.nameTeam = Team;
+    }
+
+    public FootballPlayer(String namePlayer, LocalDate dateOfBirth,  String numberPlayer, String position, String Team){
+        conut++;
+        this.id = conut;
+        this.namePlayer = namePlayer;
+        this.dateOfBirth = dateOfBirth;
         this.numberPlayer = numberPlayer;
         this.position = position;
         this.nameTeam = Team;
@@ -38,11 +58,11 @@ public class FootballPlayer extends FootballTeam {
         this.namePlayer = namePlayer;
     }
 
-    public String getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -62,11 +82,11 @@ public class FootballPlayer extends FootballTeam {
         this.weight = weight;
     }
 
-    public int getNumberPlayer() {
+    public String getNumberPlayer() {
         return numberPlayer;
     }
 
-    public void setNumberPlayer(int numberPlayer) {
+    public void setNumberPlayer(String numberPlayer) {
         this.numberPlayer = numberPlayer;
     }
 
@@ -102,13 +122,21 @@ public class FootballPlayer extends FootballTeam {
         this.card = card;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "FootballPlayer{" +
                 "namePlayer='" + namePlayer + '\'' +
                 ", numberPlayer=" + numberPlayer +
                 ", position='" + position + '\'' +
-                ", team='" + nameTeam + '\'' +
+                ", team='" + nameTeam + '\'' + "\n"+
                 '}';
     }
 }
