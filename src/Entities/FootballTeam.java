@@ -1,7 +1,5 @@
 package Entities;
-
 import java.io.Serializable;
-
 public class FootballTeam implements Serializable {
     private String nameTeam;
     private String sign;

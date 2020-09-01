@@ -12,7 +12,6 @@ public class Match implements Serializable {
     private String pitch;
     private String name;
 
-
     public Match(){
     }
 
