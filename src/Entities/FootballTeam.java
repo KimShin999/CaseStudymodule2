@@ -100,7 +100,7 @@ public class FootballTeam implements Serializable {
     }
 
     public String toStringg(FootballTeam F){
-        return  "TOP "+Vleague.teams.indexOf(F) + "."+
+        return  "TOP "+(Vleague.teams.indexOf(F)+1) + "."+
                 "Đội ='" + nameTeam + '\'' +
                 ", sign='" + sign + '\'' +
                 ", coach='" + coach + '\'' +
