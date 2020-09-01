@@ -1,11 +1,9 @@
 package Program;
-
 import Entities.FootballPlayer;
 import Entities.FootballTeam;
 import Entities.Vleague;
 import Method.PlayerMethod;
 import Method.TeamMethod;
-
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -47,6 +45,7 @@ public class ManageTeamList {
             teamMethod.getAll();
             if (Vleague.teams.size()==0){
                 System.out.println("chưa có đội bóng nào!");
+                break;
             }
             System.out.println("0.Back");
             System.out.println("Nhập vào số để xem thông tin về đội bóng: ");
@@ -146,6 +145,10 @@ public class ManageTeamList {
 
     public static void updateTeam(TeamMethod teamMethod){
         Scanner input = new Scanner(System.in);
+        if (Vleague.teams.size()==0){
+            System.out.println("chưa có đội bóng nào để sửa!");
+            return;
+        }
         System.out.println("Nhập vào tên đội bạn muốn sửa: ");
         String name = input.nextLine();
         teamMethod.search(name);
@@ -181,6 +184,10 @@ public class ManageTeamList {
     }
 
     public static void removeTeam(TeamMethod teamMethod){
+        if (Vleague.teams.size()==0){
+            System.out.println("chưa có đội bóng nào để xửa!");
+            return;
+        }
         Scanner input = new Scanner(System.in);
         System.out.println("Nhập vào tên đội bị mất quyền thi đấu: ");
         String name = input.nextLine();

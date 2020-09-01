@@ -135,7 +135,7 @@ public class FootballPlayer implements Serializable {
         return "FootballPlayer{" +
                 "namePlayer='" + namePlayer + '\'' +
                 ", numberPlayer=" + numberPlayer +
-                ", position='" + position + '\'' +
+                ", dateOfbirth='" + dateOfBirth + '\'' +
                 ", team='" + nameTeam + '\'' + "\n"+
                 '}';
     }

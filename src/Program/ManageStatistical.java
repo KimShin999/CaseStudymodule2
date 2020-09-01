@@ -46,10 +46,10 @@ public class ManageStatistical {
                 Collections.sort(Vleague.players, new Comparator<FootballPlayer>() {
                     @Override
                     public int compare(FootballPlayer o1, FootballPlayer o2) {
-                        if (o1.getDateOfBirth().isAfter(o2.getDateOfBirth())){
+                        if (o2.getDateOfBirth().isAfter(o1.getDateOfBirth())){
                             return 1;
                         }else {
-                            if (o1.getDateOfBirth().isEqual(o2.getDateOfBirth())){
+                            if (o2.getDateOfBirth().isEqual(o1.getDateOfBirth())){
                                 return 0;
                             }else {
                                 return -1;
@@ -108,7 +108,7 @@ public class ManageStatistical {
             }
         });
         for (FootballTeam team: Vleague.teams){
-            System.out.println(team);
+            System.out.println(team.toStringg(team));
         }
     }
 

@@ -94,7 +94,16 @@ public class FootballTeam implements Serializable {
                 "Đội ='" + nameTeam + '\'' +
                 ", sign='" + sign + '\'' +
                 ", coach='" + coach + '\'' +
-                ", số lượng='" + playersAttend + '\'' +
+                ", điểm=" + point +
+                ", goalDifference=" + goalDifference +
+                '}';
+    }
+
+    public String toStringg(FootballTeam F){
+        return  "TOP "+Vleague.teams.indexOf(F) + "."+
+                "Đội ='" + nameTeam + '\'' +
+                ", sign='" + sign + '\'' +
+                ", coach='" + coach + '\'' +
                 ", điểm=" + point +
                 ", goalDifference=" + goalDifference +
                 '}';

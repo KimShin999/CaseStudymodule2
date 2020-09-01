@@ -1,15 +1,8 @@
 package Program;
-import Entities.FootballPlayer;
-import Entities.FootballTeam;
-import Entities.Match;
-import Entities.Vleague;
-import Memory.ManageFileMatch;
-import Memory.ManageFilePlayer;
-import Memory.ManageFileTeam;
+
 import Method.MatchMethod;
 import Method.PlayerMethod;
 import Method.TeamMethod;
-import java.util.List;
 import java.util.Scanner;
 
 public class Program {
@@ -17,10 +10,7 @@ public class Program {
         TeamMethod teamMethod2020 = new TeamMethod();
         MatchMethod matchMethod2020 = new MatchMethod();
         PlayerMethod playerMethod2020 = new PlayerMethod();
-
-        Vleague.players = (List<FootballPlayer>) ManageFilePlayer.readFromFile();
-        Vleague.matches = (List<Match>) ManageFileMatch.readFromFile();
-        Vleague.teams = (List<FootballTeam>) ManageFileTeam.readFromFile();
+        ReadFile.readFile();
 
         Scanner input = new Scanner(System.in);
 
@@ -30,6 +20,7 @@ public class Program {
             System.out.println("2. Quản lý lịch thi đấu. ");
             System.out.println("3. Theo dõi kế quả thi đấu. ");
             System.out.println("4. Thống kê.");
+            System.out.println("5. Kết thúc mùa giải.");
             System.out.println("0. Thoát khỏi chương trình. ");
 
 
@@ -47,10 +38,12 @@ public class Program {
             if (choice.equals("4")){
                 ManageStatistical.veiwMenu(matchMethod2020);
             }
+            if (choice.equals("5")){
+                closedVleague.closedV();
+                break;
+            }
             if (choice.equals("0")){
-                 ManageFilePlayer.writeObjectToFile(Vleague.players);
-                 ManageFileMatch.writeObjectToFile(Vleague.matches);
-                 ManageFileTeam.writeObjectToFile(Vleague.teams);
+                 WriteFile.writeFile();
                 break;
             }
         }while (true);
