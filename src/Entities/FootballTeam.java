@@ -92,9 +92,13 @@ public class FootballTeam implements Serializable {
 
     @Override
     public String toString() {
-        return  id+"."+
-                "Đội bóng: " + nameTeam +
-                ", Sign: " + sign +
-                ", HLV: " + coach +"\n";
+        return id + "."+
+                "Đội ='" + nameTeam + '\'' +
+                ", sign='" + sign + '\'' +
+                ", coach='" + coach + '\'' +
+                ", số lượng='" + playersAttend + '\'' +
+                ", điểm=" + point +
+                ", goalDifference=" + goalDifference +
+                '}';
     }
 }

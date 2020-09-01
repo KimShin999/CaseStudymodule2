@@ -7,10 +7,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class test {
-    public void main(String[] args) {
-        int i ;
-        String o = "đâsda";
-        o = "dâdaadas";
+    public static void main(String[] args) {
+        System.out.printf("\t%1s %15s %15s %15s \n", "STT", "ĐỘI BÓNG" , "HLV" , "ĐIỂM");
 //        test1();
 //        test2();
     }

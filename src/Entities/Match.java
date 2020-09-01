@@ -98,8 +98,7 @@ public class Match implements Serializable {
                 ", date=" + date +
                 ", name=" + name +
                 ", goalTeamA=" + goalTeamA +
-                ", goalTeamB=" + goalTeamB +
-                ", pitch='" + pitch + '\'' + "\n"+
+                ", goalTeamB=" + goalTeamB + "\n"+
                 '}';
     }
 }
